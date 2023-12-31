@@ -67,7 +67,7 @@ class ProductManager {
         const pruduct = this.productos.find(e => e.id === id)
         if (!pruduct) {
           console.log("Producto no encontrado");
-          return;
+          return '';
         } else {
             let index = this.productos.indexOf(pruduct);
             return this.productos[index]
@@ -80,5 +80,5 @@ console.log(frutas.getProducts())
 frutas.addProduct('producto prueba', 'Este es un producto prueba', 200, 'Sin imagen','13235435', 25)
 console.log(frutas.getProducts())
 frutas.addProduct('producto prueba', 'Este es un producto prueba', 200, 'Sin imagen','13235435', 25)
+console.log(frutas.getProductById(1))
 console.log(frutas.getProductById(2))
-console.log(frutas.getProducts())
