@@ -7,7 +7,7 @@ class ProductManager {
         return this.productos
     }
 
-    addProduct(title, description, price, thumbnail, code, stock) {
+    addProduct(title="", description="", price=0, thumbnail="", code="", stock=0) {
         if (!title.trim()){
             console.log('Ingresa un titulo de producto correcto')
             return ''
@@ -18,7 +18,7 @@ class ProductManager {
             return ''
         }
 
-        if (!(price>0) || Number.isNaN(price)){
+        if (price <= 0  || typeof price != 'number'){
             console.log('Ingresa un numero de precio correcto')
             return ''
         }
@@ -39,7 +39,7 @@ class ProductManager {
             return ''
         }
         
-        if (!(stock>0) || Number.isNaN(stock)) {
+        if (stock <= 0 || typeof stock != 'number') {
             console.log('Ingresa un numero mayor a cero para el stock')
             return ''
         }
