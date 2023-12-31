@@ -8,10 +8,41 @@ class ProductManager {
     }
 
     addProduct(title, description, price, thumbnail, code, stock) {
-/*         if (!(stock>0) || !Number.isNaN(stock)) {
-            console.log('Ingresa un numero mayor a cero')
+        if (!title.trim()){
+            console.log('Ingresa un titulo de producto correcto')
             return ''
-        } */
+        }
+
+        if (!description.trim()){
+            console.log('Ingresa una descripcion de producto correcto')
+            return ''
+        }
+
+        if (!(price>0) || Number.isNaN(price)){
+            console.log('Ingresa un numero de precio correcto')
+            return ''
+        }
+
+        if (!thumbnail.trim()){
+            console.log('Ingresa un thumbnail de producto correcto')
+            return ''
+        }
+
+        if (!code.trim()){
+            console.log('Ingresa un codigo de producto correcto')
+            return ''
+        }
+
+        let codeDuplicated = this.productos.find(e => e.code === code)
+        if (codeDuplicated){
+            console.log('el codigo esta duplicado')
+            return ''
+        }
+        
+        if (!(stock>0) || Number.isNaN(stock)) {
+            console.log('Ingresa un numero mayor a cero para el stock')
+            return ''
+        }
 
         const producto = {
             title,
@@ -22,30 +53,32 @@ class ProductManager {
             code
         }
 
-
         if (this.productos.lenght === 0) {
             producto.id = 1;
-          } else {
+        } else {
             producto.id = this.productos.length + 1;
-          }
+        }
 
         this.productos.push(producto)
         console.log("Se agrego el producto exitosamente")
     }
 
     getProductById(id) {
-        const productIndex = this.productos.findIndex((e) => e.id === id);
-        if (!productIndex) {
+        const pruduct = this.productos.find(e => e.id === id)
+        if (!pruduct) {
           console.log("Producto no encontrado");
           return;
         } else {
-            return this.productos[productIndex]
+            let index = this.productos.indexOf(pruduct);
+            return this.productos[index]
         }
     }
 }
 
 const frutas = new ProductManager()
-frutas.addProduct('Manzana', 'Manzana Red Delicious del Valle', 99, 'manzana.jpg','13235435', 100)
-frutas.addProduct('Pera', 'Pera Williams de temporada', 80, 'pera.jpg', '123456', 80000)
-frutas.addProduct('Narnaja', 'Jugosa naranja de Barretal', 40, 'naranja.jpg', '123123', 70000)
+console.log(frutas.getProducts())
+frutas.addProduct('producto prueba', 'Este es un producto prueba', 200, 'Sin imagen','13235435', 25)
+console.log(frutas.getProducts())
+frutas.addProduct('producto prueba', 'Este es un producto prueba', 200, 'Sin imagen','13235435', 25)
+console.log(frutas.getProductById(2))
 console.log(frutas.getProducts())
