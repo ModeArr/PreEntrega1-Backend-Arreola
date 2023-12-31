@@ -22,8 +22,12 @@ class ProductManager {
             code
         }
 
-        if (this.productos.lenght === 0) { producto.id = 1 }
-        else { producto.id = this.productos[this.productos.lenght - 1].id + 1 }
+
+        if (this.productos.lenght === 0) {
+            producto.id = 1;
+          } else {
+            producto.id = this.productos.length + 1;
+          }
 
         this.productos.push(producto)
         console.log("Se agrego el producto exitosamente")
@@ -35,7 +39,7 @@ class ProductManager {
           console.log("Producto no encontrado");
           return;
         } else {
-            console.log(this.productos[productIndex])
+            return this.productos[productIndex]
         }
     }
 }
@@ -43,4 +47,5 @@ class ProductManager {
 const frutas = new ProductManager()
 frutas.addProduct('Manzana', 'Manzana Red Delicious del Valle', 99, 'manzana.jpg','13235435', 100)
 frutas.addProduct('Pera', 'Pera Williams de temporada', 80, 'pera.jpg', '123456', 80000)
+frutas.addProduct('Narnaja', 'Jugosa naranja de Barretal', 40, 'naranja.jpg', '123123', 70000)
 console.log(frutas.getProducts())
